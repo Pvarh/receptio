@@ -231,57 +231,79 @@
         }
 
         /* --- Sekcia Recenzie (verzia s prelínaním - FADE + štýly) --- */
-       .reviews-section {
-           margin-top: 50px;
-           padding-top: 30px;
-           border-top: 1px solid #e0e0e0;
-           text-align: center;
-       }
-       .reviews-section h2 {
-           font-size: 1.8em;
-           margin-bottom: 30px;
-           color: #333;
-       }
-       .review-carousel {
-           max-width: 600px;
-           margin: 0 auto;
-           position: relative;
-           border-radius: 8px; /* Zaoblenie kontajnera zostáva */
-           overflow: hidden;
-           aspect-ratio: 16 / 10;
-           /* === PRIDANÉ === */
-           box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Jemný tieň okolo celého karuselu */
-           background-color: #ffffff; /* Biele pozadie pre lepší kontrast s tieňom a rámikom */
-       }
-       .review-image {
-           position: absolute;
-           top: 0;
-           left: 0;
-           width: 100%;
-           height: 100%;
-           object-fit: contain;
-           opacity: 0;
-           transition: opacity 1s ease-in-out;
-           display: block;
-           /* === PRIDANÉ === */
-           border: 1px solid #e0e0e0; /* Pekný svetlosivý rámik okolo obrázka */
-           border-radius: 8px; /* Zaoblené rohy obrázka, zhodné s kontajnerom */
-           box-sizing: border-box; /* Zabezpečí, že rámik (border) sa započíta do rozmerov */
-       }
-       .review-image.active {
-           opacity: 1;
-       }
+        .reviews-section {
+            margin-top: 50px;
+            padding-top: 30px;
+            /* Odstránený border-top, lebo ho pridáva Product Hunt sekcia */
+            /* border-top: 1px solid #e0e0e0; */
+            text-align: center;
+        }
+        .reviews-section h2 {
+            font-size: 1.8em;
+            margin-bottom: 30px;
+            color: #333;
+        }
+        .review-carousel {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            aspect-ratio: 16 / 4;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            background-color: #ffffff;
+        }
+        .review-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            display: block;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            box-sizing: border-box;
+        }
+        .review-image.active {
+            opacity: 1;
+        }
+        @media (max-width: 768px) {
+            .review-carousel {
+                max-width: 90%;
+                aspect-ratio: 4 / 3;
+            }
+        }
 
-       @media (max-width: 768px) {
-           .review-carousel {
-               max-width: 90%;
-               aspect-ratio: 4 / 3;
-           }
-       }
+        /* Štýly pre novú Product Hunt sekciu (väčšinou inline, ale môžeme pridať aj sem) */
+        .product-hunt-section {
+            text-align: center;
+            margin-top: 50px; /* Odsadenie od recenzií */
+        }
+        .product-hunt-section hr {
+             border: none;
+             border-top: 1px solid #e0e0e0;
+             margin-bottom: 30px;
+             max-width: 80%; /* Širšia čiara */
+             margin-left: auto;
+             margin-right: auto;
+        }
+        .product-hunt-section p {
+            font-size: 1.1em;
+            color: #555;
+            margin-bottom: 20px;
+        }
+        .product-hunt-section img { /* Štýl pre PH badge */
+             display: block;
+             margin: 0 auto; /* Centrovanie badge */
+        }
+
 
         /* --- Pätička --- */
         .main-footer {
-            margin-top: 40px;
+            margin-top: 40px; /* Odsadenie od Product Hunt sekcie */
             padding-top: 20px;
             border-top: 1px solid #e0e0e0;
             text-align: center;
@@ -370,11 +392,24 @@
         <div class="reviews-section">
              <h2>Naše recenzie</h2>
              <div class="review-carousel">
-                  <img src="recenzia.png" alt="Recenzia 1" class="review-image"> <img src="recenzia1.png" alt="Recenzia 2" class="review-image"> <img src="recenzia3.png" alt="Recenzia 3" class="review-image"> </div>
+                  <img src="recenzia.png" alt="Recenzia 1" class="review-image">
+                  <img src="recenzia1.png" alt="Recenzia 2" class="review-image">
+                  <img src="recenzia3.png" alt="Recenzia 3" class="review-image">
+             </div>
+        </div>
+        <div class="product-hunt-section">
+             <hr>
+             <p>
+                Nájdete nás aj na <strong>Product Hunte</strong>! Kliknite a podporte nás:
+            </p>
+             <a href="https://www.producthunt.com/posts/receptio-2?embed=true&utm_source=badge-featured&utm_medium=badge&utm_souce=badge-receptio&#0045;2" target="_blank">
+                <img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=953403&theme=dark&t=1744795239767" alt="Receptio - Vaša digitálna kuchárska kniha | Product Hunt" width="250" height="54" />
+                </a>
         </div>
         <footer class="main-footer">
             <a href="mailto:kukuliak9994@gmail.com">Poslať email na kukuliak9994@gmail.com</a>
-            <p>&copy; 2025 Receptio. Vytvoril Peter Varhalík.</p> </footer>
+            <p>&copy; 2025 Receptio. Vytvoril Peter Varhalík.</p>
+        </footer>
 
     </div> <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -400,27 +435,19 @@
             }
 
             // --- Slider Recenzií (verzia s prelínaním - FADE) ---
-            const reviewImagesFade = document.querySelectorAll('.review-image'); // Vyberáme podľa novej triedy
-            const totalReviewImagesFade = reviewImagesFade.length; // Malo by byť 3
+            const reviewImagesFade = document.querySelectorAll('.review-image');
+            const totalReviewImagesFade = reviewImagesFade.length;
             let currentReviewIndexFade = 0;
-            const reviewFadeInterval = 5000; // Interval 5 sekúnd
+            const reviewFadeInterval = 5000;
 
             console.log(`Nájdených obrázkov recenzií (Fade): ${totalReviewImagesFade}`);
 
-            // Spustiť len ak máme viac ako 1 obrázok
             if (totalReviewImagesFade > 1) {
-
-                // Funkcia na zobrazenie ďalšieho obrázka
                 function showNextReviewImageFade() {
-                    // Odstrániť triedu 'active' z aktuálneho obrázka
                     if (reviewImagesFade[currentReviewIndexFade]) {
                         reviewImagesFade[currentReviewIndexFade].classList.remove('active');
                     }
-
-                    // Vypočítať index ďalšieho obrázka (cyklí 0, 1, 2)
                     currentReviewIndexFade = (currentReviewIndexFade + 1) % totalReviewImagesFade;
-
-                    // Pridať triedu 'active' novému aktuálnemu obrázku
                     if (reviewImagesFade[currentReviewIndexFade]) {
                         reviewImagesFade[currentReviewIndexFade].classList.add('active');
                         console.log(`Recenzie Fade: Zobrazuje sa index ${currentReviewIndexFade}`);
@@ -428,24 +455,18 @@
                          console.error(`Recenzie Fade: Obrázok s indexom ${currentReviewIndexFade} neexistuje!`);
                     }
                 }
-
-                // --- Počiatočný stav ---
-                // Zobraziť prvý obrázok na začiatku
                 if (reviewImagesFade[0]) {
                     reviewImagesFade[0].classList.add('active');
                     console.log('Recenzie Fade: Inicializovaný na index 0.');
                 } else {
                      console.error("Recenzie Fade: Prvý obrázok (index 0) neexistuje!");
                 }
-
-                // Spustiť interval na automatické striedanie
                 setInterval(showNextReviewImageFade, reviewFadeInterval);
 
             } else if (totalReviewImagesFade === 1) {
-                // Ak je len jeden obrázok, rovno ho zobrazíme
                  if (reviewImagesFade[0]) {
-                     reviewImagesFade[0].classList.add('active'); // Pridá triedu active
-                     reviewImagesFade[0].style.opacity = 1; // Nastaví priamo opacity pre istotu
+                     reviewImagesFade[0].classList.add('active');
+                     reviewImagesFade[0].style.opacity = 1;
                      console.log("Recenzie Fade: Zobrazený jediný obrázok.");
                  }
             } else {
